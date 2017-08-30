@@ -26,11 +26,11 @@ namespace CNTKLibraryCSEvalExamples
             CNTKLibraryManagedExamples.EvaluationBatchOfImages(DeviceDescriptor.CPUDevice);
 
             // Evaluate multiple sample requests in parallel
-            CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallel(DeviceDescriptor.CPUDevice);
+            CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallelAsync(DeviceDescriptor.CPUDevice).GetAwaiter().GetResult();
 
             // Evaluate an image asynchronously
             Task evalTask = CNTKLibraryManagedExamples.EvaluationSingleImageAsync(DeviceDescriptor.CPUDevice);
-            evalTask.Wait();
+            evalTask.GetAwaiter().GetResult();
 
             // Evaluate a single sequence with one-hot vector
             CNTKLibraryManagedExamples.EvaluationSingleSequenceUsingOneHot(DeviceDescriptor.CPUDevice);
@@ -45,9 +45,9 @@ namespace CNTKLibraryCSEvalExamples
 
             // Evaluate an image asynchronously
             evalTask = CNTKLibraryManagedExamples.EvaluationSingleImageAsync(DeviceDescriptor.GPUDevice(0));
-            evalTask.Wait();
+            evalTask.GetAwaiter().GetResult();
 
-            CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallel(DeviceDescriptor.GPUDevice(0));
+            CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallelAsync(DeviceDescriptor.GPUDevice(0)).GetAwaiter().GetResult();
             CNTKLibraryManagedExamples.EvaluationSingleSequenceUsingOneHot(DeviceDescriptor.GPUDevice(0));
             CNTKLibraryManagedExamples.EvaluationBatchOfSequencesUsingOneHot(DeviceDescriptor.GPUDevice(0));
 

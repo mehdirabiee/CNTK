@@ -25,10 +25,10 @@ namespace CNTKLibraryCSEvalExamples
 
             // Evaluate an image asynchronously
             Task evalTask = CNTKLibraryManagedExamples.EvaluationSingleImageAsync(DeviceDescriptor.CPUDevice);
-            evalTask.Wait();
+            evalTask.GetAwaiter().GetResult();
 
             // Evaluate multiple sample requests in parallel
-            CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallel(DeviceDescriptor.CPUDevice);
+            CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallelAsync(DeviceDescriptor.CPUDevice).GetAwaiter().GetResult();
 
             // Evaluate a single sequence with one-hot vector
             CNTKLibraryManagedExamples.EvaluationSingleSequenceUsingOneHot(DeviceDescriptor.CPUDevice);

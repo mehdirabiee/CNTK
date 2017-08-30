@@ -61,13 +61,13 @@ namespace CNTKLibraryCSEvalExamples
                 CNTKLibraryManagedExamples.EvaluationBatchOfImages(device);
 
                 MemoryTests.WriteOutputs();
-                CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallel(device);
+                CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallelAsync(device).GetAwaiter().GetResult();
 
                 // Run memory tests again.
                 MemoryTests.ValidateObjectReferences(device);
 
                 Task evalTask = CNTKLibraryManagedExamples.EvaluationSingleImageAsync(device);
-                evalTask.Wait();
+                evalTask.GetAwaiter().GetResult();
 
                 CNTKLibraryManagedExamples.EvaluationSingleSequenceUsingOneHot(device);
                 CNTKLibraryManagedExamples.EvaluationBatchOfSequencesUsingOneHot(device);
@@ -89,12 +89,12 @@ namespace CNTKLibraryCSEvalExamples
                 MemoryTests.ValidateObjectReferences(device);
                 CNTKLibraryManagedExamples.EvaluationSingleImage(device);
                 CNTKLibraryManagedExamples.EvaluationBatchOfImages(device);
-                CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallel(device);
+                CNTKLibraryManagedExamples.EvaluateMultipleImagesInParallelAsync(device).GetAwaiter().GetResult();
                 // Run memory tests.
                 MemoryTests.ValidateObjectReferences(device);
 
                 Task evalTask = CNTKLibraryManagedExamples.EvaluationSingleImageAsync(device);
-                evalTask.Wait();
+                evalTask.GetAwaiter().GetResult();
 
                 CNTKLibraryManagedExamples.EvaluationSingleSequenceUsingOneHot(device);
                 CNTKLibraryManagedExamples.EvaluationBatchOfSequencesUsingOneHot(device);
